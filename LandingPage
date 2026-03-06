@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keller Williams Southlake | Break Through Your Glass Ceiling</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Barlow:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --black:#000000;
+  --ink:#0d0d0d;
+  --deep:#111;
+  --charcoal:#1c1c1c;
+  --mid:#2e2e2e;
+  --steel:#4a4a4a;
+  --muted:#6e6e6e;
+  --silver:#9e9e9e;
+  --light:#c4c4c4;
+  --fog:#d8d8d8;
+  --cream:#eeebe5;
+  --white:#f8f6f2;
+  --pure:#ffffff;
+}
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CUSTOM CURSOR ── */
+#cursor {
+  position: fixed;
+  width: 10px; height: 10px;
+  background: var(--white);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%,-50%);
+  mix-blend-mode: difference;
+}
+#cursor-ring {
+  position: fixed;
+  width: 40px; height: 40px;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: width 0.5s cubic-bezier(0.16,1,0.3,1), height 0.5s cubic-bezier(0.16,1,0.3,1);
+  mix-blend-mode: difference;
+}
+
+/* ── NOISE OVERLAY ── */
+#noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9000;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ── PROGRESS LINE ── */
+#progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 1px;
+  background: var(--white);
+  width: 0%;
+  z-index: 200;
+  transition: width 0.08s linear;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 56px;
+  mix-blend-mode: difference;
+  transition: padding 0.5s;
+}
+nav.scrolled { padding: 18px 56px; }
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+}
+.nav-cta {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: none;
+  border: 1px solid rgba(255,255,255,0.5);
+  padding: 11px 28px;
+  cursor: none;
+  transition: all 0.3s;
+}
+.nav-cta:hover { background: var(--white); color: var(--black); }
+
+/* ── HERO ── */
+#s1 {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--black);
+  perspective: 1000px;
+}
+.hero-depth-layer {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+.hero-bg-kw {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-52%,-48%) translateZ(-200px) rotateX(8deg);
+  font-family: 'Playfair Display', serif;
+  font-size: 50vw;
+  font-weight: 700;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.035);
+  white-space: nowrap;
+  user-select: none;
+  line-height: 1;
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(-55deg, transparent 0px, transparent 100px,
+      rgba(255,255,255,0.018) 100px, rgba(255,255,255,0.018) 101px);
+}
+.hero-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 56px 96px;
+}
+.chapter-tag {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 0.56rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--silver);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: riseIn 1s 0.4s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(4rem, 9vw, 8.5rem);
+  font-weight: 300;
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: riseIn 1.1s 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-headline em {
+  font-style: italic;
+  display: block;
+  padding-left: clamp(40px, 8vw, 120px);
+}
+.hero-sub {
+  max-width: 480px;
+  font-size: 0.78rem;
+  line-height: 2.1;
+  color: var(--silver);
+  margin-bottom: 52px;
+  opacity: 0;
+  animation: riseIn 1s 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: riseIn 1s 1.1s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.btn-primary {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--white);
+  border: none;
+  padding: 18px 44px;
+  cursor: none;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.4s;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--black);
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.btn-primary:hover { color: var(--white); }
+.btn-primary:hover::after { transform: translateY(0); }
+.btn-primary span { position: relative; z-index: 1; }
+.btn-link {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: color 0.3s;
+  text-decoration: none;
+}
+.btn-link .arr { transition: transform 0.3s; }
+.btn-link:hover { color: var(--white); }
+.btn-link:hover .arr { transform: translateX(6px); }
+.hero-scroll {
+  position: absolute;
+  bottom: 48px;
+  right: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  opacity: 0;
+  animation: riseIn 1s 1.5s forwards;
+}
+.scroll-text {
+  font-size: 0.5rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--steel);
+  writing-mode: vertical-rl;
+}
+.scroll-bar {
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(to bottom, var(--white), transparent);
+  animation: scrollDrop 2.2s ease-in-out infinite;
+}
+@keyframes scrollDrop {
+  0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+  49%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+  50%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; opacity: 0.2; }
+}
+@keyframes riseIn {
+  from { opacity:0; transform:translateY(40px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ── STATS BAND (white) ── */
+#stats-band {
+  background: var(--white);
+  color: var(--black);
+}
+.stats-grid-b {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+}
+.stat-b {
+  padding: 56px 40px;
+  border-right: 1px solid rgba(0,0,0,0.07);
+  position: relative;
+  overflow: hidden;
+}
+.stat-b:last-child { border-right: none; }
+.stat-b-underline {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--black);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+.stat-b.visible .stat-b-underline { transform: scaleX(1); }
+.stat-num-b {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem,4vw,3.4rem);
+  font-weight: 300;
+  color: var(--black);
+  display: block;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+.stat-label-b {
+  font-size: 0.56rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--steel);
+  line-height: 1.8;
+}
+
+/* ── SECTION UTILITIES ── */
+.scene-section {
+  position: relative;
+  overflow: hidden;
+}
+.chapter-label {
+  font-size: 0.54rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--steel);
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.chapter-label::before { content:''; width:28px; height:1px; background:currentColor; flex-shrink:0; }
+.section-h {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  font-weight: 300;
+  line-height: 1.08;
+  margin-bottom: 28px;
+}
+.section-h em { font-style: italic; }
+.body-text {
+  font-size: 0.78rem;
+  line-height: 2.1;
+  color: var(--silver);
+  margin-bottom: 18px;
+}
+.body-text strong { color: var(--white); font-weight: 400; }
+
+/* ── REVEAL ANIMATIONS ── */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(48px);
+  transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1),
+              transform 0.85s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-up.visible { opacity:1; transform:translateY(0); }
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px) rotateY(-6deg);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+              transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-left.visible { opacity:1; transform:translateX(0) rotateY(0deg); }
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.9s 0.15s cubic-bezier(0.16,1,0.3,1),
+              transform 0.9s 0.15s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-right.visible { opacity:1; transform:translateX(0); }
+.d1 { transition-delay: 0.1s; }
+.d2 { transition-delay: 0.22s; }
+.d3 { transition-delay: 0.34s; }
+.d4 { transition-delay: 0.46s; }
+
+/* ── SCENE 02: PROBLEM ── */
+#s2 { background: var(--ink); padding: 120px 56px; }
+.s2-grid {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 100px; align-items: center;
+}
+.pain-cards { display: flex; flex-direction: column; gap: 2px; }
+.pain-card {
+  background: var(--charcoal);
+  padding: 32px 28px;
+  border-left: 0px solid var(--white);
+  position: relative;
+  cursor: default;
+  opacity: 0;
+  transform: translateX(-50px) rotateY(-10deg);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+              transform 0.8s cubic-bezier(0.16,1,0.3,1),
+              background 0.3s, border-left-width 0.3s;
+}
+.pain-card.visible { opacity:1; transform:translateX(0) rotateY(0deg); }
+.pain-card:nth-child(2).visible { transition-delay:0.1s; }
+.pain-card:nth-child(3).visible { transition-delay:0.2s; }
+.pain-card:nth-child(4).visible { transition-delay:0.3s; }
+.pain-card:hover { background: var(--mid); border-left-width: 2px; }
+.pain-title {
+  font-size: 0.72rem; font-weight:400;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--white); margin-bottom: 8px;
+}
+.pain-desc { font-size:0.7rem; color:var(--muted); line-height:1.85; }
+
+/* ── SCENE 03: PIVOT ── */
+#s3 {
+  background: var(--white);
+  color: var(--black);
+  padding: 130px 56px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.pivot-bg-word {
+  position: absolute; top:50%; left:50%;
+  transform: translate(-50%,-50%);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(10rem, 28vw, 26rem);
+  font-weight: 700;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(0,0,0,0.045);
+  white-space: nowrap;
+  user-select: none; pointer-events: none;
+  line-height: 1;
+}
+.pivot-inner { position: relative; z-index:2; max-width: 780px; margin: 0 auto; }
+.pivot-inner .chapter-label { color: var(--muted); justify-content: center; }
+.pivot-inner .chapter-label::before { display:none; }
+.pivot-h {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.6rem, 5.5vw, 5rem);
+  font-weight: 300; line-height: 1.1;
+  color: var(--black); margin-bottom: 26px;
+}
+.pivot-h em { font-style:italic; }
+.pivot-body { font-size:0.78rem; line-height:2.1; color:var(--steel); max-width:560px; margin:0 auto; }
+
+/* ── SCENE 04: WHY KW ── */
+#s4 { background: var(--black); padding: 120px 56px; }
+.s4-inner { max-width: 1100px; margin: 0 auto; }
+.s4-header { margin-bottom: 80px; }
+.why-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 3px;
+  perspective: 1400px;
+}
+.why-card {
+  background: var(--deep);
+  padding: 52px 36px;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transform-style: preserve-3d;
+  opacity: 0;
+  transform: translateY(70px) rotateX(18deg);
+  transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1),
+              transform 0.75s cubic-bezier(0.16,1,0.3,1),
+              background 0.4s;
+}
+.why-card.visible { opacity:1; transform:translateY(0) rotateX(0deg); }
+.why-card:nth-child(2).visible { transition-delay:0.1s; }
+.why-card:nth-child(3).visible { transition-delay:0.2s; }
+.why-card:nth-child(4).visible { transition-delay:0.08s; }
+.why-card:nth-child(5).visible { transition-delay:0.18s; }
+.why-card:nth-child(6).visible { transition-delay:0.28s; }
+.why-card::after {
+  content:'';
+  position:absolute; top:0; left:0; right:0;
+  height:1px;
+  background: var(--white);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.why-card:hover::after { transform: scaleX(1); }
+.why-card:hover { background: var(--charcoal); }
+.why-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 4.5rem; font-weight:300;
+  color: rgba(255,255,255,0.05);
+  line-height:1; margin-bottom:20px;
+  transition: color 0.4s;
+}
+.why-card:hover .why-num { color: rgba(255,255,255,0.1); }
+.why-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem; font-weight:400;
+  color: var(--white); margin-bottom:14px; line-height:1.25;
+}
+.why-body { font-size:0.7rem; color:var(--muted); line-height:1.95; }
+
+/* ── SCENE 05: PROOF ── */
+#s5 { background: var(--ink); padding: 120px 56px; }
+.s5-inner { max-width: 1100px; margin: 0 auto; }
+.proof-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 20px;
+  perspective: 1000px;
+}
+.proof-card {
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 48px 36px;
+  cursor: default;
+  opacity: 0;
+  transform: rotateY(25deg) translateZ(-100px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+              transform 0.8s cubic-bezier(0.16,1,0.3,1),
+              background 0.4s, border-color 0.4s;
+}
+.proof-card.visible { opacity:1; transform:rotateY(0deg) translateZ(0); }
+.proof-card:nth-child(2).visible { transition-delay:0.15s; }
+.proof-card:nth-child(3).visible { transition-delay:0.3s; }
+.proof-card:hover { background:var(--charcoal); border-color:rgba(255,255,255,0.28); transform:translateY(-8px); }
+.proof-q {
+  font-family:'Playfair Display',serif;
+  font-size:3.5rem; color:rgba(255,255,255,0.1);
+  line-height:0.8; margin-bottom:22px;
+}
+.proof-text {
+  font-family:'Playfair Display',serif;
+  font-style:italic; font-size:1.05rem;
+  color:var(--light); line-height:1.78; margin-bottom:32px;
+}
+.proof-result {
+  font-size:0.56rem; letter-spacing:0.28em; text-transform:uppercase;
+  color:var(--silver);
+  padding:10px 0;
+  border-top:1px solid rgba(255,255,255,0.1);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  margin-bottom:18px;
+}
+.proof-name { font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); }
+
+/* ── SCENE 06: SYSTEMS (white, sticky) ── */
+#s6 { background: var(--white); color: var(--black); padding: 120px 56px; }
+.s6-grid {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start;
+}
+.s6-left { position: sticky; top: 38vh; }
+.s6-left .chapter-label { color: var(--muted); }
+.s6-left .chapter-label::before { background: var(--muted); }
+.s6-left .section-h { color: var(--black); }
+.s6-body { font-size:0.78rem; line-height:2.1; color:var(--steel); margin-top:18px; }
+.sys-list { list-style:none; padding-top:80px; display:flex; flex-direction:column; }
+.sys-item {
+  display: flex; align-items:center; justify-content:space-between;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  cursor: default;
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+              transform 0.7s cubic-bezier(0.16,1,0.3,1),
+              padding-left 0.3s;
+}
+.sys-item:first-child { border-top:1px solid rgba(0,0,0,0.07); }
+.sys-item.visible { opacity:1; transform:translateX(0); }
+.sys-item:nth-child(2).visible { transition-delay:0.07s; }
+.sys-item:nth-child(3).visible { transition-delay:0.14s; }
+.sys-item:nth-child(4).visible { transition-delay:0.21s; }
+.sys-item:nth-child(5).visible { transition-delay:0.28s; }
+.sys-item:nth-child(6).visible { transition-delay:0.35s; }
+.sys-item:nth-child(7).visible { transition-delay:0.42s; }
+.sys-item:nth-child(8).visible { transition-delay:0.49s; }
+.sys-item:hover { padding-left:12px; }
+.sys-name { font-size:0.76rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--black); font-weight:400; }
+.sys-tag { font-size:0.58rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--silver); }
+
+/* ── SCENE 07: LEADERSHIP ── */
+#s7 { background: var(--black); padding: 120px 56px; }
+.s7-grid {
+  max-width:1100px; margin:0 auto;
+  display:grid; grid-template-columns:1fr 1fr; gap:100px; align-items:center;
+}
+.portrait-wrap {
+  perspective: 900px;
+}
+.portrait-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+  position: relative;
+}
+.portrait-box {
+  width:100%; aspect-ratio:3/4;
+  background: var(--charcoal);
+  position:relative; overflow:hidden;
+}
+.portrait-box::before {
+  content:'';
+  position:absolute; inset:0;
+  background: linear-gradient(155deg, var(--mid) 0%, var(--charcoal) 50%, var(--deep) 100%);
+}
+.portrait-box::after {
+  content:'';
+  position:absolute; inset:0;
+  background-image:
+    repeating-linear-gradient(0deg,transparent,transparent 44px,rgba(255,255,255,0.018) 44px,rgba(255,255,255,0.018) 45px),
+    repeating-linear-gradient(90deg,transparent,transparent 44px,rgba(255,255,255,0.018) 44px,rgba(255,255,255,0.018) 45px);
+}
+.portrait-initials {
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-size:9rem; font-weight:300;
+  color:rgba(255,255,255,0.06); z-index:1;
+}
+.portrait-shadow {
+  position:absolute;
+  bottom:-28px; right:-28px;
+  width:88%; height:88%;
+  border:1px solid rgba(255,255,255,0.07);
+  z-index:-1;
+}
+.portrait-nameplate {
+  position:absolute; bottom:30px; left:30px;
+  background:rgba(0,0,0,0.88);
+  border-left:1px solid var(--white);
+  padding:16px 24px; z-index:2;
+  backdrop-filter:blur(8px);
+}
+.portrait-name {
+  font-family:'Playfair Display',serif;
+  font-size:1.3rem; font-weight:400; color:var(--white); display:block;
+}
+.portrait-title {
+  font-size:0.54rem; letter-spacing:0.25em; text-transform:uppercase;
+  color:var(--silver); display:block; margin-top:6px;
+}
+.leader-body { }
+.leader-quote-block {
+  margin:36px 0; padding:26px 36px;
+  border-left:1px solid rgba(255,255,255,0.25);
+}
+.leader-quote-block p {
+  font-family:'Playfair Display',serif;
+  font-size:1.15rem; font-style:italic;
+  color:var(--light); line-height:1.7;
+}
+
+/* ── SCENE 08: CTA ── */
+#s8 {
+  background: var(--white); color: var(--black);
+  min-height:100vh;
+  display:flex; align-items:center; justify-content:center;
+  text-align:center; padding:120px 56px;
+  position:relative; overflow:hidden;
+}
+.cta-bg-plane {
+  position:absolute; inset:0; overflow:hidden;
+}
+.cta-grid-3d {
+  position:absolute;
+  bottom:-80px; left:-40%;
+  width:180%; height:100%;
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.055) 1px, transparent 1px);
+  background-size: 56px 56px;
+  transform: rotateX(72deg);
+  transform-origin: bottom center;
+  opacity:0.6;
+}
+.cta-inner {
+  position:relative; z-index:2; max-width:720px;
+}
+.cta-eyebrow {
+  font-size:0.54rem; letter-spacing:0.4em; text-transform:uppercase;
+  color:var(--steel); margin-bottom:26px;
+}
+.cta-h {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3rem,7vw,5.8rem); font-weight:300;
+  line-height:1.05; color:var(--black); margin-bottom:26px;
+}
+.cta-h em { font-style:italic; }
+.cta-body {
+  font-size:0.76rem; line-height:2.1; color:var(--steel);
+  max-width:500px; margin:0 auto 48px; letter-spacing:0.04em;
+}
+.btn-dark {
+  font-family:'Barlow',sans-serif;
+  font-size:0.62rem; font-weight:400;
+  letter-spacing:0.28em; text-transform:uppercase;
+  color:var(--white); background:var(--black);
+  border:none; padding:20px 52px;
+  cursor:none; position:relative; overflow:hidden;
+  display:inline-block; transition: color 0.4s;
+}
+.btn-dark::after {
+  content:''; position:absolute; inset:0;
+  background:var(--mid);
+  transform:translateY(100%);
+  transition:transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.btn-dark:hover::after { transform:translateY(0); }
+.btn-dark span { position:relative; z-index:1; }
+.cta-note { font-size:0.58rem; letter-spacing:0.18em; color:var(--silver); margin-top:22px; }
+
+/* ── FOOTER ── */
+footer {
+  background:var(--black);
+  border-top:1px solid rgba(255,255,255,0.07);
+  padding:64px 56px 44px;
+}
+.footer-grid {
+  max-width:1100px; margin:0 auto;
+  display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:60px; margin-bottom:60px;
+}
+.footer-brand {
+  font-family:'Playfair Display',serif;
+  font-size:1rem; font-weight:400; letter-spacing:0.18em;
+  text-transform:uppercase; color:var(--white);
+  display:block; margin-bottom:14px; text-decoration:none;
+}
+.footer-tag { font-size:0.63rem; color:var(--steel); line-height:2; }
+.foot-head { font-size:0.52rem; letter-spacing:0.35em; text-transform:uppercase; color:var(--muted); margin-bottom:22px; }
+.foot-info { font-size:0.68rem; color:var(--steel); line-height:2.2; }
+.foot-info a { color:var(--silver); text-decoration:none; transition:color 0.3s; }
+.foot-info a:hover { color:var(--white); }
+.footer-bottom {
+  max-width:1100px; margin:0 auto;
+  padding-top:28px; border-top:1px solid rgba(255,255,255,0.06);
+  display:flex; justify-content:space-between; align-items:center;
+  flex-wrap:wrap; gap:16px;
+}
+.foot-legal { font-size:0.54rem; color:var(--mid); letter-spacing:0.08em; }
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  body { cursor:auto; }
+  #cursor,#cursor-ring { display:none; }
+  nav { padding:20px 24px; }
+  nav.scrolled { padding:14px 24px; }
+  .hero-content { padding:0 24px 88px; }
+  .hero-headline em { padding-left:0; }
+  .hero-actions { flex-direction:column; align-items:flex-start; gap:24px; }
+  .hero-scroll { display:none; }
+  #s2,#s4,#s5,#s7 { padding:80px 24px; }
+  #s3,#s6,#s8 { padding:80px 24px; }
+  .s2-grid { grid-template-columns:1fr; gap:56px; }
+  .why-grid { grid-template-columns:1fr; gap:3px; }
+  .proof-grid { grid-template-columns:1fr; gap:16px; }
+  .s6-grid { grid-template-columns:1fr; gap:24px; }
+  .s6-left { position:relative; top:0; }
+  .sys-list { padding-top:0; }
+  .s7-grid { grid-template-columns:1fr; gap:56px; }
+  .stats-grid-b { grid-template-columns:repeat(2,1fr); }
+  .stat-b:nth-child(2) { border-right:none; }
+  .footer-grid { grid-template-columns:1fr; gap:36px; }
+  .footer-bottom { flex-direction:column; text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div id="noise"></div>
+<div id="progress"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">KW Southlake</a>
+  <button class="nav-cta" onclick="sms()">Schedule a Private Conversation</button>
+</nav>
+
+<!-- ══ SCENE 01: HERO ══ -->
+<section id="s1">
+  <div class="hero-depth-layer">
+    <div class="hero-bg-kw">KW</div>
+    <div class="hero-grid"></div>
+  </div>
+  <div class="hero-content">
+    <div class="chapter-tag">Chapter 01 &nbsp;·&nbsp; Keller Williams Southlake &nbsp;·&nbsp; #1 in Tarrant County</div>
+    <h1 class="hero-headline">
+      Break<br>Through
+      <em>Your Ceiling.</em>
+    </h1>
+    <p class="hero-sub">
+      The DFW luxury market has never rewarded excellence more generously.
+      The agents capturing it aren't working harder —
+      they're operating inside a fundamentally better environment.
+    </p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="sms()"><span>Schedule a Private Conversation</span></button>
+      <a href="#s2" class="btn-link">Begin the journey <span class="arr">→</span></a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-bar"></div>
+    <span class="scroll-text">Scroll</span>
+  </div>
+</section>
+
+<!-- ══ STATS BAND ══ -->
+<div id="stats-band">
+  <div class="stats-grid-b">
+    <div class="stat-b reveal-up">
+      <span class="stat-num-b" data-target="1.5" data-prefix="$" data-suffix="B+">$0</span>
+      <span class="stat-label-b">2025 Sales Volume</span>
+      <div class="stat-b-underline"></div>
+    </div>
+    <div class="stat-b reveal-up d1">
+      <span class="stat-num-b" data-target="43" data-prefix="$" data-suffix="M+">$0</span>
+      <span class="stat-label-b">Commission Paid<br>to Agents 2025</span>
+      <div class="stat-b-underline"></div>
+    </div>
+    <div class="stat-b reveal-up d2">
+      <span class="stat-num-b" data-target="30" data-suffix=" Yrs">0</span>
+      <span class="stat-label-b">Producing Luxury<br>Agents in DFW</span>
+      <div class="stat-b-underline"></div>
+    </div>
+    <div class="stat-b reveal-up d3">
+      <span class="stat-num-b" data-target="1" data-prefix="#">#</span>
+      <span class="stat-label-b">Brokerage in<br>Tarrant County</span>
+      <div class="stat-b-underline"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCENE 02: THE PROBLEM ══ -->
+<section id="s2" class="scene-section">
+  <div class="s2-grid">
+    <div>
+      <div class="chapter-label reveal-up">Chapter 02 · The Problem</div>
+      <h2 class="section-h reveal-up d1">You've Outgrown<br><em>Where You Are.</em></h2>
+      <p class="body-text reveal-up d2">The Southlake–Westlake–Trophy Club corridor recorded <strong>record luxury transaction volume in 2024</strong>. Million-dollar-plus deals dominated Tarrant County for the third consecutive year.</p>
+      <p class="body-text reveal-up d3">So why does it feel like a ceiling? Because <strong>the brokerage that got you here may not be the one that takes you there.</strong></p>
+    </div>
+    <div class="pain-cards">
+      <div class="pain-card">
+        <div class="pain-title">No Real Coaching</div>
+        <p class="pain-desc">Most brokerages collect your split and disappear. Without a strategic plan and accountability, production plateaus regardless of market conditions.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-title">No Differentiation in a Crowded Market</div>
+        <p class="pain-desc">In the luxury tier, reputation and systems are the only sustainable edges. Without them, you compete on price — a race that erodes your value.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-title">Technology That Creates Friction</div>
+        <p class="pain-desc">High-net-worth clients expect seamless, elevated experiences. Fragmented tools and manual processes signal a lack of sophistication.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-title">Effort Without Architecture</div>
+        <p class="pain-desc">Volume doesn't follow hustle — it follows positioning, systems, and environment. You need a platform, not just a license.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SCENE 03: THE PIVOT ══ -->
+<section id="s3" class="scene-section">
+  <div class="pivot-bg-word">NEXT</div>
+  <div class="pivot-inner">
+    <div class="chapter-label reveal-up" style="justify-content:center;margin-bottom:20px;">Chapter 03 · The Shift</div>
+    <h2 class="pivot-h reveal-up d1">Thirty years of<br><em>producing the best</em><br>in North Texas.</h2>
+    <p class="pivot-body reveal-up d2">KW Southlake isn't a new concept. It's a tested, refined, and proven engine for transforming ambitious agents into dominant luxury producers — in this exact market, with these exact buyers and sellers.</p>
+  </div>
+</section>
+
+<!-- ══ SCENE 04: WHY KW ══ -->
+<section id="s4" class="scene-section">
+  <div class="s4-inner">
+    <div class="s4-header">
+      <div class="chapter-label reveal-up">Chapter 04 · The Difference</div>
+      <h2 class="section-h reveal-up d1">A Different Kind<br><em>of Brokerage.</em></h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-num">01</div><div class="why-title">Proven Systems That Produce</div><p class="why-body">KW Command and 30-year-tested listing frameworks built for the luxury tier. Not theory — architecture with a proven track record in this exact market.</p></div>
+      <div class="why-card"><div class="why-num">02</div><div class="why-title">Direct Coaching & Accountability</div><p class="why-body">Direct access to Ashley and leadership — individual business plans, quarterly strategy reviews, and the honest accountability that actually moves numbers.</p></div>
+      <div class="why-card"><div class="why-num">03</div><div class="why-title">Collaboration Over Competition</div><p class="why-body">No territorial culture. The top producers here raise the floor for everyone. You're surrounded by professionals who want to see you win.</p></div>
+      <div class="why-card"><div class="why-num">04</div><div class="why-title">Luxury Market Authority</div><p class="why-body">The KW Southlake name opens doors with high-net-worth clients before a word is spoken. Thirty years of brand equity in the most affluent corridor in North Texas.</p></div>
+      <div class="why-card"><div class="why-num">05</div><div class="why-title">World-Class Technology</div><p class="why-body">KW Command integrates CRM, marketing, analytics, and transaction management in one platform — purpose-built for agents operating at volume in the luxury space.</p></div>
+      <div class="why-card"><div class="why-num">06</div><div class="why-title">Economics That Scale With You</div><p class="why-body">We paid out over $43M in commissions in 2025 alone. Our model rewards excellence — not caps it. Your ceiling here is self-imposed.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SCENE 05: PROOF ══ -->
+<section id="s5" class="scene-section">
+  <div class="s5-inner">
+    <div style="margin-bottom:80px;">
+      <div class="chapter-label reveal-up">Chapter 05 · Agent Stories</div>
+      <h2 class="section-h reveal-up d1">Results That<br><em>Speak Clearly.</em></h2>
+    </div>
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="proof-q">"</div>
+        <p class="proof-text">I had done $6M the year before joining. Twelve months later I closed $14.2M. It wasn't luck — it was the systems, the coaching, and being surrounded by people who operate at a different level.</p>
+        <div class="proof-result">$6M → $14.2M · Year One</div>
+        <div class="proof-name">Senior Agent · Southlake Residential</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-q">"</div>
+        <p class="proof-text">Ashley built a 90-day plan in my first week that was more specific than anything I'd had in eight years of real estate. I finally had a strategy — not just a hustle.</p>
+        <div class="proof-result">First $1M+ Listing Within 60 Days</div>
+        <div class="proof-name">Luxury Specialist · Westlake & Trophy Club</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-q">"</div>
+        <p class="proof-text">I was skeptical a bigger brokerage could feel personal. The culture here is the most collaborative I've experienced — it's made me a better agent, not just a busier one.</p>
+        <div class="proof-result">GCI Doubled in 18 Months</div>
+        <div class="proof-name">Investment & Luxury Specialist · DFW</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SCENE 06: SYSTEMS ══ -->
+<section id="s6" class="scene-section">
+  <div class="s6-grid" style="margin:0 auto; max-width:1100px;">
+    <div class="s6-left">
+      <div class="chapter-label reveal-up">Chapter 06 · The Platform</div>
+      <h2 class="section-h reveal-up d1" style="color:var(--black);">Everything<br><em>You Need</em><br>to Perform.</h2>
+      <p class="s6-body reveal-up d2">Every system, tool, and resource designed for one purpose: to remove friction between your talent and your results.</p>
+    </div>
+    <ul class="sys-list">
+      <li class="sys-item"><span class="sys-name">KW Command CRM</span><span class="sys-tag">Full-stack platform</span></li>
+      <li class="sys-item"><span class="sys-name">Luxury Marketing Suite</span><span class="sys-tag">Print & digital</span></li>
+      <li class="sys-item"><span class="sys-name">Lead Generation Systems</span><span class="sys-tag">Proven pipelines</span></li>
+      <li class="sys-item"><span class="sys-name">Transaction Coordination</span><span class="sys-tag">White-glove support</span></li>
+      <li class="sys-item"><span class="sys-name">Business Planning Tools</span><span class="sys-tag">KW-exclusive framework</span></li>
+      <li class="sys-item"><span class="sys-name">Market Analytics & Data</span><span class="sys-tag">Real-time intelligence</span></li>
+      <li class="sys-item"><span class="sys-name">Weekly Training & Masterminds</span><span class="sys-tag">Ongoing access</span></li>
+      <li class="sys-item"><span class="sys-name">Global KW Referral Network</span><span class="sys-tag">Worldwide ecosystem</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══ SCENE 07: LEADERSHIP ══ -->
+<section id="s7" class="scene-section">
+  <div class="s7-grid">
+    <div class="portrait-wrap reveal-left">
+      <div class="portrait-3d" id="portrait3d">
+        <div class="portrait-box">
+          <div class="portrait-initials">AP</div>
+        </div>
+        <div class="portrait-shadow"></div>
+        <div class="portrait-nameplate">
+          <span class="portrait-name">Ashley Pantuso</span>
+          <span class="portrait-title">Team Leader · KW Southlake</span>
+        </div>
+      </div>
+    </div>
+    <div class="leader-body reveal-right">
+      <div class="chapter-label">Chapter 07 · Leadership</div>
+      <h2 class="section-h">The Person<br>in <em>Your Corner.</em></h2>
+      <p class="body-text">Ashley Pantuso leads KW Southlake with a single mission: to build the most capable, connected, and courageous team of luxury agents in North Texas. Under her leadership, the brokerage has become the <strong>#1 market center in Tarrant County</strong> — a title earned through culture, systems, and relentless investment in agent success.</p>
+      <p class="body-text">Ashley doesn't manage from a distance. She coaches, challenges, and champions the agents who choose to be here — with the directness and care that actually produces results.</p>
+      <div class="leader-quote-block">
+        <p>"This market rewards the agents who invest in themselves. My job is to make sure that when you make that investment, it pays back exponentially."</p>
+      </div>
+      <button class="btn-primary" onclick="sms()"><span>Schedule a Private Conversation</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SCENE 08: CTA ══ -->
+<section id="s8" class="scene-section">
+  <div class="cta-bg-plane"><div class="cta-grid-3d"></div></div>
+  <div class="cta-inner">
+    <div class="cta-eyebrow reveal-up">Chapter 08 · The Next Step</div>
+    <h2 class="cta-h reveal-up d1">Your Next Level<br>Is <em>One Conversation</em><br>Away.</h2>
+    <p class="cta-body reveal-up d2">No pressure. No pitch. Just a private, confidential conversation about where you are, where you want to be, and whether KW Southlake is the right environment to get you there.</p>
+    <div class="reveal-up d3">
+      <button class="btn-dark" onclick="sms()"><span>Schedule a Private Conversation</span></button>
+    </div>
+    <p class="cta-note reveal-up d4">Completely confidential · No obligation · Direct access to Ashley</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a class="footer-brand" href="#">KW Southlake</a>
+      <p class="footer-tag">Keller Williams Southlake<br>#1 Brokerage in Tarrant County<br>30 Years of Luxury Excellence in DFW</p>
+    </div>
+    <div>
+      <div class="foot-head">Contact</div>
+      <div class="foot-info">
+        Ashley Pantuso, Team Leader<br>
+        <a href="tel:8179880596">(817) 988-0596</a><br><br>
+        Southlake, Texas · Serving All of DFW
+      </div>
+    </div>
+    <div>
+      <div class="foot-head">Connect</div>
+      <div class="foot-info">
+        <a href="javascript:void(0)" onclick="sms()">Schedule a Conversation</a><br>
+        <a href="tel:8179880596">Call Directly</a><br>
+        <a href="sms:8179880596">Text Ashley</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="foot-legal">© 2025 Keller Williams Southlake. All rights reserved. Each office independently owned and operated. Equal Housing Opportunity.</p>
+    <p class="foot-legal">Licensed Texas Real Estate Broker</p>
+  </div>
+</footer>
+
+<script>
+/* ── SMS ── */
+function sms() {
+  const msg = encodeURIComponent("I'm interested in learning more about KW Southlake and how it can help grow my business");
+  window.location.href = 'sms:8179880596&body=' + msg;
+}
+
+/* ── CURSOR ── */
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => {
+  mx=e.clientX; my=e.clientY;
+  cur.style.left=mx+'px'; cur.style.top=my+'px';
+});
+(function loop(){ rx+=(mx-rx)*0.1; ry+=(my-ry)*0.1; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(loop); })();
+document.querySelectorAll('button,a').forEach(el => {
+  el.addEventListener('mouseenter',()=>{ ring.style.width='68px'; ring.style.height='68px'; });
+  el.addEventListener('mouseleave',()=>{ ring.style.width='40px'; ring.style.height='40px'; });
+});
+
+/* ── PROGRESS ── */
+const prog = document.getElementById('progress');
+window.addEventListener('scroll',()=>{
+  prog.style.width = (window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';
+},{passive:true});
+
+/* ── NAV ── */
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll',()=>{ nav.classList.toggle('scrolled',window.scrollY>60); },{passive:true});
+
+/* ── INTERSECTION OBSERVER ── */
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      e.target.querySelectorAll('[data-target]').forEach(animCount);
+    }
+  });
+},{threshold:0.12,rootMargin:'0px 0px -30px 0px'});
+
+document.querySelectorAll(
+  '.reveal-up,.reveal-left,.reveal-right,.pain-card,.why-card,.proof-card,.sys-item,.stat-b'
+).forEach(el=>obs.observe(el));
+
+/* Counter also via parent stat-band */
+const sObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.querySelectorAll('[data-target]').forEach(animCount); });
+},{threshold:0.3});
+const sb = document.getElementById('stats-band');
+if(sb) sObs.observe(sb);
+
+/* ── COUNTER ── */
+function animCount(el){
+  if(el._animated) return; el._animated=true;
+  const target=parseFloat(el.dataset.target);
+  const pre=el.dataset.prefix||'';
+  const suf=el.dataset.suffix||'';
+  const dec=target!==Math.floor(target);
+  const dur=2000; const start=performance.now();
+  (function step(now){
+    const p=Math.min((now-start)/dur,1);
+    const ease=1-Math.pow(1-p,4);
+    el.textContent=pre+(dec?( ease*target).toFixed(1):Math.round(ease*target))+suf;
+    if(p<1) requestAnimationFrame(step);
+  })(start);
+}
+
+/* ── PARALLAX HERO ── */
+window.addEventListener('scroll',()=>{
+  const sy=window.scrollY;
+  const kw=document.querySelector('.hero-bg-kw');
+  const hg=document.querySelector('.hero-grid');
+  if(kw) kw.style.transform=`translate(-52%,-48%) translateZ(-200px) rotateX(8deg) translateY(${sy*0.18}px)`;
+  if(hg) hg.style.transform=`translateY(${sy*0.06}px)`;
+},{passive:true});
+
+/* ── 3D TILT: why-cards ── */
+document.querySelectorAll('.why-card').forEach(c=>{
+  c.addEventListener('mousemove',e=>{
+    const r=c.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-0.5;
+    const y=(e.clientY-r.top)/r.height-0.5;
+    c.style.transform=`translateY(0) rotateX(0) translateZ(28px) rotateX(${-y*14}deg) rotateY(${x*14}deg)`;
+  });
+  c.addEventListener('mouseleave',()=>{ c.style.transform=''; });
+});
+
+/* ── 3D TILT: portrait ── */
+const p3 = document.getElementById('portrait3d');
+if(p3){
+  p3.addEventListener('mousemove',e=>{
+    const r=p3.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-0.5;
+    const y=(e.clientY-r.top)/r.height-0.5;
+    p3.style.transform=`rotateY(${x*18}deg) rotateX(${-y*12}deg)`;
+  });
+  p3.addEventListener('mouseleave',()=>{ p3.style.transform=''; });
+}
+</script>
+</body>
+</html>
