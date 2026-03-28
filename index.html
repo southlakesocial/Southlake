@@ -603,19 +603,19 @@ nav.scrolled { padding: 18px 56px; }
   position:absolute; inset:0;
   background: linear-gradient(155deg, var(--mid) 0%, var(--charcoal) 50%, var(--deep) 100%);
 }
-.portrait-box::after {
-  content:'';
+.portrait-box img {
   position:absolute; inset:0;
-  background-image:
-    repeating-linear-gradient(0deg,transparent,transparent 44px,rgba(255,255,255,0.018) 44px,rgba(255,255,255,0.018) 45px),
-    repeating-linear-gradient(90deg,transparent,transparent 44px,rgba(255,255,255,0.018) 44px,rgba(255,255,255,0.018) 45px);
+  width:100%; height:100%;
+  object-fit:cover; object-position: center top;
+  z-index:1;
+  display:block;
 }
 .portrait-initials {
   position:absolute; inset:0;
   display:flex; align-items:center; justify-content:center;
   font-family:'Playfair Display',serif;
   font-size:9rem; font-weight:300;
-  color:rgba(255,255,255,0.06); z-index:1;
+  color:rgba(255,255,255,0.06); z-index:0;
 }
 .portrait-shadow {
   position:absolute;
@@ -947,6 +947,7 @@ footer {
       <div class="portrait-3d" id="portrait3d">
         <div class="portrait-box">
           <div class="portrait-initials">AP</div>
+          <img src="ashley.jpg" alt="Ashley Pantuso, Team Leader KW Southlake" onerror="this.style.display='none'">
         </div>
         <div class="portrait-shadow"></div>
         <div class="portrait-nameplate">
