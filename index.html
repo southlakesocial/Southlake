@@ -1010,6 +1010,126 @@ footer {
     <p class="foot-legal">© 2025 Keller Williams Southlake. All rights reserved. Each office independently owned and operated. Equal Housing Opportunity.</p>
     <p class="foot-legal">Licensed Texas Real Estate Broker</p>
   </div>
+  <!-- ══ INSTAGRAM BLOCK ══ -->
+<!-- Paste this anywhere in your index.html, recommended: just above the <footer> tag -->
+
+<style>
+#instagram-block {
+  background: var(--black);
+  padding: 100px 56px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+/* Subtle radial glow */
+#instagram-block::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px; height: 300px;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+.ig-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.ig-icon {
+  width: 48px; height: 48px;
+  margin: 0 auto 28px;
+  opacity: 0.6;
+}
+.ig-eyebrow {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.54rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--steel);
+  margin-bottom: 18px;
+}
+.ig-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.ig-headline em { font-style: italic; }
+.ig-handle {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--silver);
+  margin-bottom: 40px;
+  display: block;
+}
+.ig-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--white);
+  border: none;
+  padding: 18px 44px;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.4s;
+}
+.ig-btn::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--black);
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.ig-btn:hover { color: var(--white); }
+.ig-btn:hover::after { transform: translateY(0); }
+.ig-btn span { position: relative; z-index: 1; }
+.ig-btn svg { position: relative; z-index: 1; transition: transform 0.3s; }
+.ig-btn:hover svg { transform: scale(1.15); }
+
+@media(max-width:768px){
+  #instagram-block { padding: 80px 24px; }
+}
+</style>
+
+<section id="instagram-block">
+  <div class="ig-inner">
+    <!-- Instagram icon -->
+    <svg class="ig-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="6" y="6" width="36" height="36" rx="10" stroke="white" stroke-width="1.5"/>
+      <circle cx="24" cy="24" r="8" stroke="white" stroke-width="1.5"/>
+      <circle cx="35" cy="13" r="2" fill="white"/>
+    </svg>
+
+    <div class="ig-eyebrow">Follow Along</div>
+    <h2 class="ig-headline">Behind the<br><em>Glass Ceiling.</em></h2>
+    <span class="ig-handle">@kwsouthlake</span>
+
+    <a class="ig-btn" href="https://instagram.com/kwsouthlake" target="_blank" rel="noopener noreferrer">
+      <svg width="16" height="16" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="6" y="6" width="36" height="36" rx="10" stroke="currentColor" stroke-width="2"/>
+        <circle cx="24" cy="24" r="8" stroke="currentColor" stroke-width="2"/>
+        <circle cx="35" cy="13" r="2" fill="currentColor"/>
+      </svg>
+      <span>Follow Us on Instagram</span>
+    </a>
+  </div>
+</section>
+<!-- ══ END INSTAGRAM BLOCK ══ -->
 </footer>
 
 <script>
